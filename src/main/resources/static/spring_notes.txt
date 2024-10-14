@@ -1,0 +1,19 @@
+NOTES:
+
+1. Package Persistence
+
+import javax.persistence.*;
+
+Package is part of the Java Persistence API (JPA), which is a Java specification for accessing, persisting, and managing data between Java objects and a relational database.
+
+Examples include @Entity, @Table, @Column, @Id, @GeneratedValue, etc.
+
+2. Annotations
+
+import org.springframework.web.bind.annotation.*;
+
+Package in Spring Framework provides annotations that are used to build Spring MVC web applications.
+
+a. @RestController: Similar to @Controller, but it also adds @ResponseBody to the methods by default, which means the return values are automatically serialized into JSON or XML and written to the HTTP response body.
+
+b. @RequestBody: Body->raw->JSON
