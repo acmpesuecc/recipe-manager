@@ -31,7 +31,4 @@ You can interact with the database using the MySQL CMD Line Client or use the co
 1. Using IntelliJ IDEA
    * In the Run/Debug configurations make sure it says `com.example.HelloSQL.expApplication` under Build and Run.
    * Run the Application and open http://localhost:8080/recipe_catalog.html
-
-## Resources
-
-Go by example `https://gobyexample.com/`
+   
