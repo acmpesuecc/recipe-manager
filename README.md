@@ -2,6 +2,8 @@
 
 This recipe application lets users easily create their own recipe catalog. Users can fill in all the essential details like the recipe name, ingredients, cooking time, step-by-step instructions and difficulty level. There's also a feature to rate each recipe, helping users track their favorites.
 
+Note: If you are a contributer, please read [CONTRIBUTING.md](https://github.com/acmpesuecc/recipe-manager/blob/main/CONTRIBUTING.md)
+
 # Prerequisites
 
 - IntelliJ IDEA
