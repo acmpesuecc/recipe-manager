@@ -3,18 +3,12 @@ package com.example.HelloSQL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller  // Using @Controller to serve HTML pages with dynamic data
 @RequestMapping("/user/recipe")
 public class RecipeController {
 
@@ -25,35 +19,11 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    // Endpoint to fetch all recipes and display in the HTML view
+    // This method renders the 'recipes.html' view and passes the recipes to the page
     @GetMapping("/view")
     public String viewRecipes(Model model) {
-        List<RecipeModel> recipes = recipeService.getAllRecipes();
-        model.addAttribute("recipes", recipes);  // Add the list of recipes to the view
-        return "recipes";  // Return the name of the Thymeleaf template (recipes.html)
-    }
-
-    @PostMapping("/add")
-    public RecipeModel addRecipe(@RequestBody RecipeModel newRecipe) {
-        return recipeService.addRecipe(newRecipe);
-    }
-
-    @PutMapping("/rate/{id}")
-    public void rateRecipe(@PathVariable Long id, @RequestParam double rating) {
-        recipeService.rateRecipe(id, rating);
-    }
-
-    @GetMapping("/view")
-public String viewRecipes(Model model) {
-    System.out.println("viewRecipes method called");  // Debugging
-    List<RecipeModel> recipes = recipeService.getAllRecipes();
-    model.addAttribute("recipes", recipes);
-    return "recipes";
-}
-
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteRecipe(@PathVariable Long id) {
-        recipeService.deleteRecipe(id);
+        List<RecipeModel> recipes = recipeService.getAllRecipes();  // Fetch recipes from DB
+        model.addAttribute("recipes", recipes);  // Add recipe list to the model
+        return "recipes";  // Return the Thymeleaf view (located in templates/recipes.html)
     }
 }
