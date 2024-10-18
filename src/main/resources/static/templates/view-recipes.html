@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Catalog - View Recipes</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to a CSS file for styling -->
+</head>
+<body>
+    <h1>Recipe Catalog</h1>
+
+    <!-- Container to display recipes -->
+    <div id="recipe-container"></div>
+
+    <script>
+        // Function to fetch all recipes from backend
+        async function fetchRecipes() {
+            const response = await fetch('/user/recipe/all');
+            const recipes = await response.json();
+            displayRecipes(recipes);
+        }
+
+        // Function to display recipes in the UI
+        function displayRecipes(recipes) {
+            const recipeContainer = document.getElementById('recipe-container');
+            recipeContainer.innerHTML = '';
+
+            recipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.innerHTML = `
+                    <h2>${recipe.title}</h2>
+                    <p><strong>Ingredients:</strong> ${recipe.ingredients.join(', ')}</p>
+                    <p><strong>Instructions:</strong> ${recipe.instructions}</p>
+                    <p><strong>Cooking Time:</strong> ${recipe.cookingTime} minutes</p>
+                    <p><strong>Difficulty Level:</strong> ${recipe.difficultyLevel}</p>
+                    <p><strong>Average Rating:</strong> ${recipe.averageRating.toFixed(1)} (from ${recipe.numberOfRatings} ratings)</p>
+                `;
+                recipeContainer.appendChild(recipeCard);
+            });
+        }
+
+        // Call fetchRecipes when the page loads
+        fetchRecipes();
+    </script>
+</body>
+</html>
