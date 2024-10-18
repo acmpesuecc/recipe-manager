@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipe List</title>
+</head>
+<body>
+    <h1>Recipe List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Ingredients</th>
+                <th>Instructions</th>
+                <th>Cooking Time</th>
+                <th>Difficulty Level</th>
+                <th>Average Rating</th>
+                <th>Number of Ratings</th>
+                <th>Rate</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.title}"></td>
+                <td th:text="${recipe.ingredients}"></td>
+                <td th:text="${recipe.instructions}"></td>
+                <td th:text="${recipe.cookingTime} + ' mins'"></td>
+                <td th:text="${recipe.difficultyLevel}"></td>
+                <td th:text="${recipe.averageRating}"></td>
+                <td th:text="${recipe.numberOfRatings}"></td>
+
+                <!-- Rate form -->
+                <td>
+                    <form action="/user/recipe/rate/${recipe.id}" method="post">
+                        <input type="number" step="0.1" name="rating" min="0" max="5">
+                        <input type="submit" value="Rate">
+                    </form>
+                </td>
+
+                <!-- Delete form -->
+                <td>
+                    <form action="/user/recipe/delete/${recipe.id}" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

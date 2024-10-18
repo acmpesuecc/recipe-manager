@@ -1,9 +1,10 @@
 package com.example.HelloSQL;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RecipeService {
@@ -19,7 +20,7 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public RecipeModel addRecipe(RecipeModel newRecipe) {  // Now returns the saved recipe
+    public RecipeModel addRecipe(RecipeModel newRecipe) {
         return recipeRepository.save(newRecipe);
     }
 
@@ -33,9 +34,6 @@ public class RecipeService {
             recipe.setAverageRating(newAverageRating);
             recipe.setNumberOfRatings(numberOfRatings + 1);
             recipeRepository.save(recipe);
-        } else {
-            // Handle error: Recipe not found
-            // You can throw an exception or handle it in a way appropriate for your application
         }
     }
 
