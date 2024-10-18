@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .recipe {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #0066cc;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipes</h1>
+    <div th:each="recipe : ${recipes}" class="recipe">
+        <h2 th:text="${recipe.title}"></h2>
+        <p><strong>Ingredients:</strong></p>
+        <ul>
+            <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}"></li>
+        </ul>
+        <p><strong>Instructions:</strong> <span th:text="${recipe.instructions}"></span></p>
+        <p><strong>Cooking Time:</strong> <span th:text="${recipe.cookingTime}"></span> minutes</p>
+        <p><strong>Difficulty Level:</strong> <span th:text="${recipe.difficultyLevel}"></span></p>
+        <p><strong>Average Rating:</strong> <span th:text="${#numbers.formatDecimal(recipe.averageRating, 1, 1)}"></span> 
+           (<span th:text="${recipe.numberOfRatings}"></span> ratings)</p>
+    </div>
+</body>
+</html>
