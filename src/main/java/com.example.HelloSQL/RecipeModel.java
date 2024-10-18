@@ -16,6 +16,7 @@ public class RecipeModel {
     private String difficultyLevel;
     private double averageRating;
     private int numberOfRatings; // New field to keep track of the number of ratings
+    private List<String> labels;
     public RecipeModel() {
     }
     public RecipeModel(Long id, String title, List<String> ingredients, String instructions, int cookingTime, String difficultyLevel, List<String> labels, double averageRating, int numberOfRatings) {
