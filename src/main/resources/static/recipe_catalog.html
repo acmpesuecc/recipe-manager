@@ -136,6 +136,7 @@
             const recipeData = {
                 title: formData.get('title'),
                 ingredients: formData.get('ingredients').split(','), // Assuming ingredients are comma-separated
+                labels: formData.get('labels').split(','),
                 instructions: formData.get('instructions'),
                 cookingTime: parseInt(formData.get('cooking-time')),
                 difficultyLevel: formData.get('difficulty-level')
