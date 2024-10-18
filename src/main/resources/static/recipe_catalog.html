@@ -116,6 +116,7 @@
                     <p><strong>Instructions:</strong> ${recipe.instructions}</p>
                     <p><strong>Cooking Time:</strong> ${recipe.cookingTime} minutes</p>
                     <p><strong>Difficulty Level:</strong> ${recipe.difficultyLevel}</p>
+                    <p><strong>Labels:</strong> ${recipe.labels.join(', ')}</p>
                     <p><strong>Average Rating:</strong> ${recipe.averageRating}</p>
                     <button onclick="rateRecipe(${recipe.id})">Rate Recipe</button>
                     <button onclick="deleteRecipe(${recipe.id})">Delete Recipe</button>
