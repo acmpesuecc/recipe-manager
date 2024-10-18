@@ -33,11 +33,6 @@ public class RecipeController {
         return "recipes";  // Return the name of the Thymeleaf template (recipes.html)
     }
 
-    @GetMapping("/all")
-    public List<RecipeModel> getAllRecipes() {
-        return recipeService.getAllRecipes();
-    }
-
     @PostMapping("/add")
     public RecipeModel addRecipe(@RequestBody RecipeModel newRecipe) {
         return recipeService.addRecipe(newRecipe);
@@ -47,6 +42,15 @@ public class RecipeController {
     public void rateRecipe(@PathVariable Long id, @RequestParam double rating) {
         recipeService.rateRecipe(id, rating);
     }
+
+    @GetMapping("/view")
+public String viewRecipes(Model model) {
+    System.out.println("viewRecipes method called");  // Debugging
+    List<RecipeModel> recipes = recipeService.getAllRecipes();
+    model.addAttribute("recipes", recipes);
+    return "recipes";
+}
+
 
     @DeleteMapping("/delete/{id}")
     public void deleteRecipe(@PathVariable Long id) {
