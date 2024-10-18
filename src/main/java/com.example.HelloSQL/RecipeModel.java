@@ -16,6 +16,7 @@ public class RecipeModel {
     private String difficultyLevel;
     private double averageRating;
     private int numberOfRatings; // New field to keep track of the number of ratings
+    @ElementCollection
     private List<String> labels;
     public RecipeModel() {
     }
