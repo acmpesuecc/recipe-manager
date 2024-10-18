@@ -9,6 +9,7 @@ public class RecipeModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    
     @ElementCollection
     private List<String> ingredients;
     private String instructions;
@@ -16,6 +17,7 @@ public class RecipeModel {
     private String difficultyLevel;
     private double averageRating;
     private int numberOfRatings; // New field to keep track of the number of ratings
+    
     @ElementCollection
     private List<String> labels;
     public RecipeModel() {
