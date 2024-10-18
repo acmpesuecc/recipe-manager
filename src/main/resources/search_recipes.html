@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Recipes</title>
+</head>
+<body>
+    <h1>Search Recipes</h1>
+    <form id="searchForm">
+        <label for="title">Recipe Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+
+        <label for="ingredients">Ingredients:</label>
+        <input type="text" id="ingredients" name="ingredients"><br><br>
+
+        <label for="cookingTime">Cooking Time (in minutes):</label>
+        <input type="number" id="cookingTime" name="cookingTime"><br><br>
+
+        <input type="submit" value="Search">
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('title').value;
+            const ingredients = document.getElementById('ingredients').value;
+            const cookingTime = document.getElementById('cookingTime').value;
+
+            fetch(`/api/recipes/search?title=${title}&ingredients=${ingredients}&cookingTime=${cookingTime}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+                    data.forEach(recipe => {
+                        resultsDiv.innerHTML += `<div><h3>${recipe.title}</h3><p>Ingredients: ${recipe.ingredients.join(', ')}</p><p>Cooking Time: ${recipe.cookingTime} minutes</p></div>`;
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
