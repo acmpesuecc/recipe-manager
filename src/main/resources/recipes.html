@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipes</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>All Recipes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Ingredients</th>
+                <th>Instructions</th>
+                <th>Cooking Time</th>
+                <th>Difficulty Level</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.title

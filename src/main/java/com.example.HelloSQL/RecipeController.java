@@ -36,4 +36,12 @@ public class RecipeController {
     public void deleteRecipe(@PathVariable Long id) {
         recipeService.deleteRecipe(id);
     }
+
+    @GetMapping("/view")
+public String viewRecipes(Model model) {
+    List<RecipeModel> recipes = recipeService.getAllRecipes();
+    model.addAttribute("recipes", recipes);
+    return "recipes";  // This refers to the recipes.html template
+}
+
 }
