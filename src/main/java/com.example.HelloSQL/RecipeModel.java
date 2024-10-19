@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "recipe_model")
 public class RecipeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

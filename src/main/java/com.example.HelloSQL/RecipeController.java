@@ -2,6 +2,7 @@ package com.example.HelloSQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -26,14 +27,23 @@ public class RecipeController {
         return recipeService.addRecipe(newRecipe);
     }
 
-    @PutMapping("/rate/{id}")
-    public void rateRecipe(@PathVariable Long id, @RequestParam double rating) {
-        recipeService.rateRecipe(id, rating);
+    @GetMapping("/view")
+    public List<RecipeModel> viewRecipes() {
+        return recipeService.getAllRecipes(); // JSON response
     }
 
+    @GetMapping("/viewPage")
+    public String viewRecipesPage(Model model) {
+        List<RecipeModel> recipes = recipeService.getAllRecipes();
+        model.addAttribute("recipes", recipes);
+        return "viewRecipes"; // Render the HTML template
+    }
+    @GetMapping("/recipes")
+    public List<RecipeModel> getRecipes() {
+        return recipeService.getAllRecipes();}
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteRecipe(@PathVariable Long id) {
-        recipeService.deleteRecipe(id);
+    @PostMapping("/recipes")
+    public RecipeModel saveRecipe(@RequestBody RecipeModel recipe) {
+        return recipeService.addRecipe(recipe);
     }
 }
