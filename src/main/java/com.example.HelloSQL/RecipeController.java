@@ -1,14 +1,13 @@
+controll
+
 package com.example.HelloSQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user/recipe")
 public class RecipeController {
 
@@ -39,9 +38,9 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
     }
 
-    // New endpoint to serve the view recipes page
-    @GetMapping("/view")
+    // Optionally, if you want a separate endpoint to serve the HTML file:
+    @GetMapping("/recipes")
     public String viewRecipes() {
-        return "view-recipes"; // This should match the HTML filename without the extension
+        return "view-recipes"; // This should match the name of your HTML file without the extension
     }
 }

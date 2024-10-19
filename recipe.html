@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        #recipe-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .recipe-card {
+            width: 30%;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        .recipe-card h2 {
+            margin-top: 0;
+        }
+        .recipe-card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipe Catalog</h1>
+    <div id="recipe-container"></div>
+
+    <script>
+        // Sample recipe data
+        const recipes = [
+            {
+                title: "Spaghetti Carbonara",
+                ingredients: ["Spaghetti", "Eggs", "Pancetta", "Parmesan cheese", "Pepper"],
+                instructions: "Cook the spaghetti, fry the pancetta, mix with eggs and cheese.",
+                cookingTime: 20,
+                difficultyLevel: "Easy",
+                labels: ["Italian"],
+                averageRating: 4.5,
+                numberOfRatings: 10
+            },
+            {
+                title: "Chicken Tikka Masala",
+                ingredients: ["Chicken", "Yogurt", "Tomato", "Onion", "Spices"],
+                instructions: "Marinate chicken, cook with spices and tomatoes.",
+                cookingTime: 30,
+                difficultyLevel: "Medium",
+                labels: ["Indian"],
+                averageRating: 4.7,
+                numberOfRatings: 8
+            },
+            {
+                title: "Beef Tacos",
+                ingredients: ["Ground beef", "Taco shells", "Lettuce", "Cheese", "Salsa"],
+                instructions: "Cook beef, assemble tacos with toppings.",
+                cookingTime: 15,
+                difficultyLevel: "Easy",
+                labels: ["Mexican"],
+                averageRating: 4.3,
+                numberOfRatings: 12
+            }
+        ];
+
+        // Function to display recipes in the UI
+        function displayRecipes(recipes) {
+            const recipeContainer = document.getElementById('recipe-container');
+            recipeContainer.innerHTML = '';
+
+            recipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.classList.add('recipe-card');
+                recipeCard.innerHTML = `
+                    <h2>${recipe.title}</h2>
+                    <p><strong>Ingredients:</strong> ${recipe.ingredients.join(', ')}</p>
+                    <p><strong>Instructions:</strong> ${recipe.instructions}</p>
+                    <p><strong>Cooking Time:</strong> ${recipe.cookingTime} minutes</p>
+                    <p><strong>Difficulty Level:</strong> ${recipe.difficultyLevel}</p>
+                    <p><strong>Labels:</strong> ${recipe.labels.join(', ')}</p>
+                    <p><strong>Average Rating:</strong> ${recipe.averageRating.toFixed(1)} (${recipe.numberOfRatings} ratings)</p>
+                `;
+                recipeContainer.appendChild(recipeCard);
+            });
+        }
+
+        // Call displayRecipes with sample data when the page loads
+        displayRecipes(recipes);
+    </script>
+</body>
+</html>
