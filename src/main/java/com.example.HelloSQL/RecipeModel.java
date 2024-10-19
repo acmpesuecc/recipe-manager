@@ -9,6 +9,7 @@ public class RecipeModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    
     @ElementCollection
     private List<String> ingredients;
     private String instructions;
@@ -16,9 +17,12 @@ public class RecipeModel {
     private String difficultyLevel;
     private double averageRating;
     private int numberOfRatings; // New field to keep track of the number of ratings
+    
+    @ElementCollection
+    private List<String> labels;
     public RecipeModel() {
     }
-    public RecipeModel(Long id, String title, List<String> ingredients, String instructions, int cookingTime, String difficultyLevel, double averageRating, int numberOfRatings) {
+    public RecipeModel(Long id, String title, List<String> ingredients, String instructions, int cookingTime, String difficultyLevel, List<String> labels, double averageRating, int numberOfRatings) {
         this.id = id;
         this.title = title;
         this.ingredients = ingredients;
@@ -27,6 +31,7 @@ public class RecipeModel {
         this.difficultyLevel = difficultyLevel;
         this.averageRating = averageRating;
         this.numberOfRatings = numberOfRatings;
+        this.labels = labels;
     }
     public Long getId() {
         return id;
@@ -42,6 +47,12 @@ public class RecipeModel {
     }
     public List<String> getIngredients() {
         return ingredients;
+    }
+    public List<String> getLabels() {
+        return labels;
+    }
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
     }
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;

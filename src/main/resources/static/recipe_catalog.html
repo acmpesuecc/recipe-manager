@@ -90,6 +90,8 @@
         <option value="Medium">Medium</option>
         <option value="Hard">Hard</option>
     </select><br>
+    <label for="labels">Labels (separated by comma):</label><br>
+    <input type="text" id="labels" name="labels" required><br>
     <button type="submit">Add Recipe</button>
 </form>
 
@@ -114,6 +116,7 @@
                     <p><strong>Instructions:</strong> ${recipe.instructions}</p>
                     <p><strong>Cooking Time:</strong> ${recipe.cookingTime} minutes</p>
                     <p><strong>Difficulty Level:</strong> ${recipe.difficultyLevel}</p>
+                    <p><strong>Labels:</strong> ${recipe.labels.join(', ')}</p>
                     <p><strong>Average Rating:</strong> ${recipe.averageRating}</p>
                     <button onclick="rateRecipe(${recipe.id})">Rate Recipe</button>
                     <button onclick="deleteRecipe(${recipe.id})">Delete Recipe</button>
@@ -133,6 +136,7 @@
             const recipeData = {
                 title: formData.get('title'),
                 ingredients: formData.get('ingredients').split(','), // Assuming ingredients are comma-separated
+                labels: formData.get('labels').split(','),
                 instructions: formData.get('instructions'),
                 cookingTime: parseInt(formData.get('cooking-time')),
                 difficultyLevel: formData.get('difficulty-level')
